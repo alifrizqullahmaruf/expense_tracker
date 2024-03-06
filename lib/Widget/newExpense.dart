@@ -34,7 +34,7 @@ class _NewExpenseState extends State<NewExpense> {
       child: Column(
         children: [
           const Text(
-            "Add expenses",
+            "New expense",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
@@ -60,10 +60,10 @@ class _NewExpenseState extends State<NewExpense> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text('Selected Date'),
+                    const Text('Selected Date'),
                     IconButton(
                       onPressed: _presentDatePicker,
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.calendar_month,
                       ),
                     ),
