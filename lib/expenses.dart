@@ -45,29 +45,56 @@ class _ExpensesState extends State<Expenses> {
   }
 
   void _removeExpense(Expense expense) {
+    final expensesList = _registeredExpenses.indexOf(expense);
     setState(() {
       _registeredExpenses.remove(expense);
     });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 3),
+        content: Text('Expense removed'),
+        action: SnackBarAction(
+            label: 'Undo',
+            onPressed: () {
+              setState(() {
+                _registeredExpenses.insert(expensesList, expense);
+              });
+            }),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    Widget mainContent = const Center(
+      child: Text('No expenses found. Start adding some!'),
+    );
+
+    if (_registeredExpenses.isNotEmpty) {
+      mainContent = ExpensesList(
+        expenses: _registeredExpenses,
+        onRemovedExpense: _removeExpense,
+      );
+    }
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Flutter App Expenses"),
+        title: const Text(
+          "Flutter App Expenses",
+          style: TextStyle(fontSize: 21, fontWeight: FontWeight.w500),
+        ),
         actions: [
           IconButton(
-              onPressed: _openAddExpensiveOverLay, icon: const Icon(Icons.add))
+            onPressed: _openAddExpensiveOverLay,
+            icon: const Icon(Icons.add),
+          )
         ],
       ),
       body: Column(
         children: [
-          const Text("The cart"),
+          const Text('The chart'),
           Expanded(
-              child: ExpensesList(
-            expenses: _registeredExpenses,
-            onRemovedExpense: _removeExpense,
-          ))
+            child: mainContent,
+          )
         ],
       ),
     );
