@@ -80,6 +80,7 @@ class _ExpensesState extends State<Expenses> {
     }
     return Scaffold(
       appBar: AppBar(
+        // titile for the main content
         title: const Text(
           "Flutter App Expenses",
           style: TextStyle(fontSize: 21, fontWeight: FontWeight.w500),
