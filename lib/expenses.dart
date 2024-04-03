@@ -86,6 +86,7 @@ class _ExpensesState extends State<Expenses> {
           style: TextStyle(fontSize: 21, fontWeight: FontWeight.w500),
         ),
         actions: [
+          // this iconButton for an add some new expenses
           IconButton(
             onPressed: _openAddExpensiveOverLay,
             icon: const Icon(Icons.add),
