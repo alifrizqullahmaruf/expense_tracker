@@ -29,15 +29,16 @@ class _ExpensesState extends State<Expenses> {
     ),
   ];
 
-  void _openAddExpensiveOverLay() {
-    showModalBottomSheet(
-      isScrollControlled: true,
-      context: context,
-      builder: (ctx) => NewExpense(
-        onAddExpense: _addExpense,
-      ),
-    );
-  }
+    void _openAddExpensiveOverLay() {
+      showModalBottomSheet(
+        useSafeArea: true,
+        isScrollControlled: true,
+        context: context,
+        builder: (ctx) => NewExpense(
+          onAddExpense: _addExpense,
+        ),
+      );
+    }
 
   void _addExpense(Expense expense) {
     setState(() {
